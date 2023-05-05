@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.OrderDao">
+   <insert id="addOrder" parameterType="com.model.Order" keyProperty="id" useGeneratedKeys="true">
+      insert into `order` (total,amount,status,paytype,name,phone,address,datetime,user_id)
+      values (#{total},#{amount},#{status},#{paytype},#{name},#{phone},#{address},#{datetime},#{user.id})
+   </insert>
+
+   <insert id="insertOrderItem" parameterType="com.model.OrderItem">
+      insert into orderitem values (0,#{price},#{amount},#{goods.id},#{order.id})
+   </insert>
+
+   <select id="selectAllOrder" parameterType="int" resultType="com.model.Order">
+      select * from `order` where user_id = #{userId} order by datetime desc
+   </select>
+
+   <select id="selectAllItem" resultType="com.model.OrderItem">
+      select i.*,g.name from orderitem i,goods g where i.goods_id = g.id and i.order_id = #{orderId}
+   </select>
+</mapper>

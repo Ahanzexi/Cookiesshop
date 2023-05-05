@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.GoodsDao">
+   <insert id="addGoods" parameterType="com.model.Goods">
+      insert into goods values (0,#{name},#{cover},#{image1},#{image2},#{price},#{intro},#{stock},#{type.id})
+   </insert>
+
+   <select id="countGoodsByTypeId" resultType="int">
+      select count(*) from goods g,type t where g.type_id = t.id and t.id = #{typeId}
+   </select>
+
+   <select id="getAllGoods" resultType="com.model.Goods">
+      select g.*,t.name typename from goods g,type t where g.type_id = t.id order by g.id
+   </select>
+
+   <select id="getAllGoodsByRecommend" resultType="com.model.Goods" parameterType="int">
+      select g.*,t.name typename from goods g,type t,recommend r where g.id = r.goods_id
+      and g.type_id = t.id and r.type = #{recommend} order by g.id
+   </select>
+
+   <select id="getAllGoodsByTypeId" parameterType="int" resultType="com.model.Goods">
+      select g.*,t.name typename from goods g,type t where g.type_id = t.id and t.id = #{typeId} order by g.id
+   </select>
+
+   <delete id="deleteGoods" parameterType="int">
+      delete from goods where id = #{goodsId}
+   </delete>
+
+   <select id="isRecommend" parameterType="map" resultType="com.model.Goods">
+      select * from recommend where type = #{recommend} and goods_id = #{gid}
+   </select>
+
+   <delete id="removeRecommend"  parameterType="map" >
+      delete from recommend where type = #{recommend} and goods_id = #{gid}
+   </delete>
+
+   <insert id="addRecommend" parameterType="map">
+      insert into recommend values (0,#{recommend},#{gid})
+   </insert>
+
+   <select id="goodsDetail" parameterType="int" resultType="com.model.Goods">
+      select g.*,t.name typename from goods g,type t where g.type_id = t.id and g.id = #{id}
+   </select>
+</mapper>
