@@ -17,7 +17,7 @@
 <body>
 <!--header-->
 <jsp:include page="header.jsp">
-    <jsp:param name="flag" value="2"></jsp:param>
+    <jsp:param name="flag" value="2"/>
 </jsp:include>
 <!--//header-->
 <!--products-->

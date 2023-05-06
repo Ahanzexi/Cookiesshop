@@ -87,32 +87,14 @@
                     </td>
                     <td><p>${order.datetime }</p></td>
                 </tr>
-
             </c:forEach>
-
-
         </table>
         <jsp:include page="/jsp/page.jsp">
-            <jsp:param name="url" value="/order_list"/>
+            <jsp:param name="url" value="order_list"/>
             <jsp:param name="param" value="&status=${status}"/>
         </jsp:include>
     </div>
 </div>
-<!--//cart-items-->
-<!--footer-->
 <jsp:include page="footer.jsp"/>
-<!--//footer-->
 </body>
-<script>
-    let tabs = document.querySelectorAll('.nav-tabs li');
-    tabs.forEach(function(tab) {
-        tab.addEventListener('click', function(event) {
-            tabs.forEach(function(otherTab) {
-                otherTab.classList.remove('active');
-            });
-            event.target.classList.add('active')
-            window.location.href = event.target.getAttribute('href');
-        });
-    });
-</script>
 </html>

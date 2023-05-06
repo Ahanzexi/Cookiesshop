@@ -54,18 +54,20 @@ public class OrderController {
     }
 
     @RequestMapping("/order_list")
-    public String orderList(HttpServletRequest request, HttpSession session, @RequestParam(value = "status",defaultValue = "0") Integer status, Model model){
+    public String orderList(
+            HttpServletRequest request
+            ,@RequestParam(defaultValue = "1",value = "pageNum") Integer pageNum
+            , @RequestParam(value = "status",defaultValue = "0") Integer status
+            , Model model){
         User user = (User) request.getSession().getAttribute("user");
         if( user == null){
             model.addAttribute("msg","提交订单，请先登录！");
             return "user_login";
         }
-        List<Order> orderList = orderService.selectAllOrder(user.getId());
-        session.setAttribute("orderList",orderList);
         /* 1.需要一个用户名 */
         model.addAttribute("username",user.getName());
         /* 2.需要根据状态分页显示 */
-        model.addAttribute("page",orderService.selectOrderByStatus(user.getId(),status));
+        model.addAttribute("page",orderService.selectOrderByStatus(user.getId(),status,pageNum));
         /* 3.设置当前状态 */
         model.addAttribute("status",status);
         return "order_list";
