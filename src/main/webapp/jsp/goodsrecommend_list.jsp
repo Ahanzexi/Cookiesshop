@@ -19,7 +19,7 @@
 
 <!--header-->
 <jsp:include page="header.jsp">
-    <jsp:param name="flag" value="3"></jsp:param>
+    <jsp:param name="flag" value="3"/>
 </jsp:include>
 <!--//header-->
 <!--products-->
@@ -59,8 +59,8 @@
         </div>
 
         <jsp:include page="page.jsp">
-            <jsp:param name="url" value="goodsrecommend_list"></jsp:param>
-            <jsp:param name="param" value="&type=${t}"></jsp:param>
+            <jsp:param name="url" value="goodsrecommend_list"/>
+            <jsp:param name="param" value="&type=${t}"/>
         </jsp:include>
         </div>
     </div>
@@ -73,7 +73,7 @@
 
 
 <!--footer-->
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"/>
 <!--//footer-->
 
 

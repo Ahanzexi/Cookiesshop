@@ -1,11 +1,15 @@
 package com.srevice;
 
+import com.github.pagehelper.PageInfo;
 import com.model.Order;
 import com.model.OrderItem;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface OrderService {
-    public void addOrder(Order order);
-    public List<Order> selectAllOrder(int userId);
+     void addOrder(Order order);
+     List<Order> selectAllOrder(int userId);
+
+    PageInfo<Order> selectOrderByStatus(int user_id, int status);
 }

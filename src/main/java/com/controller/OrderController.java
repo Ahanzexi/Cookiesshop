@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -53,7 +54,7 @@ public class OrderController {
     }
 
     @RequestMapping("/order_list")
-    public String orderList(HttpServletRequest request,HttpSession session,Model model){
+    public String orderList(HttpServletRequest request, HttpSession session, @RequestParam(value = "status",defaultValue = "0") Integer status, Model model){
         User user = (User) request.getSession().getAttribute("user");
         if( user == null){
             model.addAttribute("msg","提交订单，请先登录！");
@@ -61,6 +62,12 @@ public class OrderController {
         }
         List<Order> orderList = orderService.selectAllOrder(user.getId());
         session.setAttribute("orderList",orderList);
+        /* 1.需要一个用户名 */
+        model.addAttribute("username",user.getName());
+        /* 2.需要根据状态分页显示 */
+        model.addAttribute("page",orderService.selectOrderByStatus(user.getId(),status));
+        /* 3.设置当前状态 */
+        model.addAttribute("status",status);
         return "order_list";
     }
 }

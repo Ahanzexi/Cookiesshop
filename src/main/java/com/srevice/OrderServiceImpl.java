@@ -1,11 +1,14 @@
 package com.srevice;
 
 import com.dao.OrderDao;
+import com.github.pagehelper.PageInfo;
+import com.model.Goods;
 import com.model.Order;
 import com.model.OrderItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,5 +36,19 @@ public class OrderServiceImpl implements OrderService{
             order.setItemList(itemList);
         }
         return list;
+    }
+
+    @Override
+    public PageInfo<Order> selectOrderByStatus(int user_id, int status) {
+        List<Order> orderList;
+        if (status==0){
+            orderList = orderDao.selectAllOrder(user_id);
+        } else{
+            orderList = orderDao.selectOrderByStatus(user_id,status);
+        }
+        for (Order order:orderList) {
+            order.setItemList(orderDao.selectAllItem(order.getId()));
+        }
+        return new PageInfo<>(orderList);
     }
 }

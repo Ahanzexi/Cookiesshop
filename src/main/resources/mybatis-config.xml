@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<setting name="logImpl" value="LOG4J"/>
 </settings>
 	<plugins>
-		<plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+		<plugin interceptor="com.github.pagehelper.PageInterceptor"/>
 	</plugins>
 	 <mappers>
 <!--        <mapper resource="com/mybatis/IndexMapper.xml"/>-->

@@ -22,7 +22,7 @@
 
 	<!--header-->
 	<jsp:include page="/jsp/header.jsp">
-		<jsp:param name="flag" value="7"></jsp:param>
+		<jsp:param name="flag" value="7"/>
 	</jsp:include>
 	<!--//header-->
 

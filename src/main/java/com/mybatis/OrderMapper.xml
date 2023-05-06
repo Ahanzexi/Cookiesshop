@@ -19,4 +19,8 @@
    <select id="selectAllItem" resultType="com.model.OrderItem">
       select i.*,g.name from orderitem i,goods g where i.goods_id = g.id and i.order_id = #{orderId}
    </select>
+      <!--根据状态获取订单数据-->
+   <select id="selectOrderByStatus" resultType="com.model.Order">
+        select * from `order` where user_id = #{userid} and status = #{status} order by datetime desc
+   </select>
 </mapper>

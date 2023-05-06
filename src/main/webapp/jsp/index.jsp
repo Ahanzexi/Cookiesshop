@@ -16,7 +16,7 @@
 <body>
 <!--header-->
 <jsp:include page="/jsp/header.jsp">
-    <jsp:param name="flag" value="1"></jsp:param>
+    <jsp:param name="flag" value="1"/>
 </jsp:include>
 <!--banner-->
 

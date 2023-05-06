@@ -33,7 +33,7 @@
 
             <c:forEach items="${page.list}" var="g">
                 <div class="product-grid">
-                    <a href="/goods_detail?id=${g.id}">
+                    <a href="${pageContext.request.contextPath}/goods_detail?id=${g.id}">
                         <div class="more-product"><span> </span></div>
                         <div class="product-img b-link-stripe b-animate-go  thickbox">
                             <img src="${g.cover}" class="img-responsive" alt="${g.name}" width="240" height="240">
@@ -58,8 +58,8 @@
         </div>
 
         <jsp:include page="/jsp/page.jsp">
-            <jsp:param name="url" value="/goods_list"></jsp:param>
-            <jsp:param name="param" value="&typeid=${id}"></jsp:param>
+            <jsp:param name="url" value="/goods_list"/>
+            <jsp:param name="param" value="&typeid=${id}"/>
         </jsp:include>
         </div>
     </div>
@@ -72,7 +72,7 @@
 
 
 <!--footer-->
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="footer.jsp"/>
 <!--//footer-->
 
 

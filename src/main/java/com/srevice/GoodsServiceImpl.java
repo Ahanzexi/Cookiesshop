@@ -30,9 +30,9 @@ public class GoodsServiceImpl implements GoodsService{
     @Override
     public PageInfo<Goods> getGoodsByPage(int pageNum, int recommend) {
         PageHelper.startPage(pageNum,10);
-        List<Goods> goodsList = new ArrayList<Goods>();
+        List<Goods> goodsList;
         if(recommend == 0){
-//            全部商品
+        // 全部商品
             goodsList = goodsDao.getAllGoods();
         }else {
             goodsList = goodsDao.getAllGoodsByRecommend(recommend);
